@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/user/.m2/repository/org/apache/uima/uimaj-core/2.4.0/uimaj-core-2.4.0.jar" sourcepath="C:/Users/user/.m2/repository/org/apache/uima/uimaj-core/2.4.0/uimaj-core-2.4.0-sources.jar">
+		<attributes>
+			<attribute name="maven.groupId" value="org.apache.uima"/>
+			<attribute name="maven.artifactId" value="uimaj-core"/>
+			<attribute name="maven.version" value="2.4.0"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="/infrastructure"/>
+	<classpathentry kind="src" path="/common"/>
+	<classpathentry kind="var" path="JARS/uimafit-1.3.0/uimafit-1.3.0.jar" sourcepath="/TPS/uimafit-1.3.0"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
