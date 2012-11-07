@@ -3,6 +3,8 @@ package eu.excitementproject.eop.lap.ae.tokenizer;
 import java.util.Collection;
 import java.util.List;
 import java.util.SortedMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
@@ -30,7 +32,7 @@ import ac.biu.nlp.nlp.instruments.tokenizer.TokenizerException;
  * @since Nov 2012
  *
  */
-public class TokenizerAE extends JCasAnnotator_ImplBase {
+public abstract class TokenizerAE extends JCasAnnotator_ImplBase {
 
 	// TODO when do we get this instance? when this clss is instantiated?
 	// Can we get params from the desc XML?
@@ -41,11 +43,26 @@ public class TokenizerAE extends JCasAnnotator_ImplBase {
 	public void initialize(UimaContext aContext) throws ResourceInitializationException
 	{
 		super.initialize(aContext);
-		// TODO somehow get the non-UIMA Tokenizer object, and keep it in innerTokenizer
+
+		try {
+			innerTokenizer = getInnerTool();
+		} catch (Exception e) {
+			throw new ResourceInitializationException(e);
+		}
 	}
 	
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
+		/*************************************************/
+		// TODO REMOVE testing only
+		String text = aJCas.getDocumentText();
+		Matcher m = Pattern.compile("([^\\.]+)").matcher(text);
+		for (int i=1; i<=m.groupCount(); i++) {
+			Sentence sentence = new Sentence(aJCas, m.start(i), m.end(i));
+			sentence.addToIndexes();
+		}
+		/*************************************************/
+		
 		try {
 			Collection<Sentence> sentenceAnnotations = JCasUtil.select(aJCas, Sentence.class);
 			List<String> sentenceStrings = JCasUtil.toText(sentenceAnnotations);
@@ -82,4 +99,6 @@ public class TokenizerAE extends JCasAnnotator_ImplBase {
 			throw new AnalysisEngineProcessException(AnalysisEngineProcessException.ANNOTATOR_EXCEPTION, null, e);
 		}
 	}
+	
+	protected abstract Tokenizer getInnerTool() throws Exception;
 }
