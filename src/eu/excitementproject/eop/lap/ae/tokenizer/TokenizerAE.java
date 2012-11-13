@@ -50,15 +50,7 @@ public abstract class TokenizerAE extends JCasAnnotator_ImplBase {
 			throw new ResourceInitializationException(e);
 		}
 	}
-	
-	public void moo() {
-		
-	}
-	
-	public int koo() {
-		return 8;
-	}
-	
+
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		/*************************************************/

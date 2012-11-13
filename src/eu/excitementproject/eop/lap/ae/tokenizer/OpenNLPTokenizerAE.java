@@ -21,8 +21,4 @@ public class OpenNLPTokenizerAE extends TokenizerAE {
 		return new OpenNlpTokenizer(new File(modelFile));
 	}
 	
-	public float doo() {
-		return 5.7f;
-	}
-
 }
