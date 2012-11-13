@@ -20,5 +20,9 @@ public class OpenNLPTokenizerAE extends TokenizerAE {
 	protected Tokenizer getInnerTool() throws Exception {
 		return new OpenNlpTokenizer(new File(modelFile));
 	}
+	
+	public float doo() {
+		return 5.7f;
+	}
 
 }
