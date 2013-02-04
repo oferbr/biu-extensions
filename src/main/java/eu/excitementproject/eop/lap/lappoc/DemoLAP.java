@@ -11,9 +11,9 @@ import org.uimafit.factory.AggregateBuilder;
 
 import eu.excitementproject.eop.lap.LAPAccess;
 import eu.excitementproject.eop.lap.LAPException;
-import eu.excitementproject.eop.lap.ae.postagger.OpenNlpPosTaggerAE;
+import eu.excitementproject.eop.lap.ae.postagger.MaxentPosTaggerAE;
 import eu.excitementproject.eop.lap.ae.sentencesplitter.LingPipeSentenceSplitterAE;
-import eu.excitementproject.eop.lap.ae.tokenizer.OpenNLPTokenizerAE;
+import eu.excitementproject.eop.lap.ae.tokenizer.MaxentTokenizerAE;
 
 /**
  * <b>NOTE:</b> This class was adapted from eu.excitementproject.eop.lap.lappoc.OpenNLPTaggerEN<br>
@@ -40,11 +40,9 @@ public class DemoLAP extends LAP_ImplBase implements LAPAccess {
 		AnalysisEngineDescription tagger = null; 
 		try {
 			splitter = createPrimitiveDescription(LingPipeSentenceSplitterAE.class);
-			tokenizer = createPrimitiveDescription(OpenNLPTokenizerAE.class,
-					OpenNLPTokenizerAE.PARAM_MODEL_FILE, "D:/Java/Jars/opennlp-tools-1.3.0/models/english/tokenize/EnglishTok.bin.gz");
-			tagger = createPrimitiveDescription(OpenNlpPosTaggerAE.class,
-					OpenNlpPosTaggerAE.PARAM_MODEL_FILE , "src/test/resources/parser/tag.bin.gz",
-					OpenNlpPosTaggerAE.PARAM_TAG_DICT,    "src/test/resources/parser/tagdict");
+			tokenizer = createPrimitiveDescription(MaxentTokenizerAE.class);
+			tagger = createPrimitiveDescription(MaxentPosTaggerAE.class,
+					MaxentPosTaggerAE.PARAM_MODEL_FILE , "src/test/resources/parser/tag.bin.gz");
 		}
 		catch (ResourceInitializationException re)
 		{

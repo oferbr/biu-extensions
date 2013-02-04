@@ -14,7 +14,7 @@ package eu.excitementproject.eop.lap.ae.postagger;
  * only some of them do (the others by default are mapped to O).
  * <li>All symbols in the list PennPartOfSpeech.SYMBOLS go explicitly to OTHER in BIU, whereas in DKPro
  * they are implicitly mapped to O (no practical difference).
- * <li>DKPro's list of top-level POS type is slightly larger than BIU's CanonicalPosTag, so some
+ * <li>DKPro's list of top-level POS type is slightly larger than BIU's SimplerCanonicalPosTag, so some
  * mappings are different.
  * </ul>
  * Currently this BIU code ignores these differences.

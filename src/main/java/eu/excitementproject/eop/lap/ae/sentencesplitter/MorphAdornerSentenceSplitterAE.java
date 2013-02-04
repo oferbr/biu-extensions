@@ -1,10 +1,7 @@
 package eu.excitementproject.eop.lap.ae.sentencesplitter;
 
+import eu.excitementproject.eop.lap.biu.en.sentencesplit.MorphAdornerSentenceSplitter;
 import eu.excitementproject.eop.lap.util.Envelope;
-
-import ac.biu.nlp.nlp.instruments.sentencesplit.LingPipeSentenceSplitter;
-import ac.biu.nlp.nlp.instruments.sentencesplit.MorphAdornerSentenceSplitter;
-import ac.biu.nlp.nlp.instruments.tokenizer.MaxentTokenizer;
 
 public class MorphAdornerSentenceSplitterAE extends SentenceSplitterAE<MorphAdornerSentenceSplitter> {
 

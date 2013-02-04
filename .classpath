@@ -5,7 +5,6 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/infrastructure"/>
 	<classpathentry kind="var" path="M2_REPO/de/tudarmstadt/ukp/dkpro/core/de.tudarmstadt.ukp.dkpro.core.api.lexmorph-asl/1.4.0/de.tudarmstadt.ukp.dkpro.core.api.lexmorph-asl-1.4.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/de/tudarmstadt/ukp/dkpro/core/de.tudarmstadt.ukp.dkpro.core.api.resources-asl/1.4.0/de.tudarmstadt.ukp.dkpro.core.api.resources-asl-1.4.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/de/tudarmstadt/ukp/dkpro/core/de.tudarmstadt.ukp.dkpro.core.api.segmentation-asl/1.4.0/de.tudarmstadt.ukp.dkpro.core.api.segmentation-asl-1.4.0.jar"/>
@@ -20,5 +19,8 @@
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/3.1.0.RELEASE/spring-beans-3.1.0.RELEASE.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/3.1.0.RELEASE/spring-context-3.1.0.RELEASE.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/core"/>
+	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

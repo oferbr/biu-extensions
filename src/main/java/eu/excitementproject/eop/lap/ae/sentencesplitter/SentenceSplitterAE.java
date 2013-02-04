@@ -2,20 +2,21 @@ package eu.excitementproject.eop.lap.ae.sentencesplitter;
 
 import java.util.List;
 import java.util.SortedMap;
+
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
-import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
-import eu.excitementproject.eop.lap.ae.SingletonSynchronizedAnnotator;
 
-import ac.biu.nlp.nlp.general.DockedToken;
-import ac.biu.nlp.nlp.general.StringUtil;
-import ac.biu.nlp.nlp.general.StringUtilException;
-import ac.biu.nlp.nlp.instruments.sentencesplit.SentenceSplitter;
-import ac.biu.nlp.nlp.instruments.sentencesplit.SentenceSplitterException;
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
+import eu.excitementproject.eop.common.utilities.DockedToken;
+import eu.excitementproject.eop.common.utilities.StringUtil;
+import eu.excitementproject.eop.common.utilities.StringUtilException;
+import eu.excitementproject.eop.lap.ae.SingletonSynchronizedAnnotator;
+import eu.excitementproject.eop.lap.biu.sentencesplit.SentenceSplitter;
+import eu.excitementproject.eop.lap.biu.sentencesplit.SentenceSplitterException;
 
 /**
  * A UIMA Analysis Engine that splits the document in the CAS to sentences. <BR>
- * This is only a wrapper for an existing non-UIMA <code>SentenceSplitter</code>
+ * This is only a wrapper for an existing non-UIMA <code>eu.excitementproject.eop.lap.biu.sentencesplit.SentenceSplitter</code>
  * interface.
  * 
  * @author Ofer Bronstein
@@ -30,7 +31,7 @@ public abstract class SentenceSplitterAE<T extends SentenceSplitter> extends Sin
 			List<String> sentenceStrings = null;
 			String text = aJCas.getDocumentText();
 
-			// Using the inner tool
+			// Using the inner tool - smallest "synchronize" block possible
 			synchronized (innerTool) {
 				innerTool.setDocument(text);
 				innerTool.split();
@@ -54,6 +55,4 @@ public abstract class SentenceSplitterAE<T extends SentenceSplitter> extends Sin
 			throw new AnalysisEngineProcessException(AnalysisEngineProcessException.ANNOTATOR_EXCEPTION, null, e);
 		}
 	}
-	
-//	protected abstract Tokenizer getInnerTool() throws Exception;
 }

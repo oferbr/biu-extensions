@@ -1,8 +1,7 @@
 package eu.excitementproject.eop.lap.ae.tokenizer;
 
+import eu.excitementproject.eop.lap.biu.en.tokenizer.MaxentTokenizer;
 import eu.excitementproject.eop.lap.util.Envelope;
-
-import ac.biu.nlp.nlp.instruments.tokenizer.MaxentTokenizer;
 
 public class MaxentTokenizerAE extends TokenizerAE<MaxentTokenizer> {
 

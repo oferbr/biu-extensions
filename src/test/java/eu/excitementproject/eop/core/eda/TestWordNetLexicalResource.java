@@ -6,15 +6,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import ac.biu.nlp.nlp.instruments.dictionary.wordnet.WordNetRelation;
-import ac.biu.nlp.nlp.lexical_resource.LexicalResourceException;
-import ac.biu.nlp.nlp.lexical_resource.LexicalRule;
-import ac.biu.nlp.nlp.lexical_resource.impl.wordnet.WordnetLexicalResource;
-import ac.biu.nlp.nlp.lexical_resource.impl.wordnet.WordnetRuleInfo;
-import ac.biu.nlp.nlp.representation.CanonicalPosTag;
-import ac.biu.nlp.nlp.representation.PartOfSpeech;
-import ac.biu.nlp.nlp.representation.UnspecifiedPartOfSpeech;
-import ac.biu.nlp.nlp.representation.UnsupportedPosTagStringException;
+import eu.excitementproject.eop.common.component.lexicalknowledge.LexicalResourceException;
+import eu.excitementproject.eop.common.component.lexicalknowledge.LexicalRule;
+import eu.excitementproject.eop.common.representation.partofspeech.SimplerCanonicalPosTag;
+import eu.excitementproject.eop.common.representation.partofspeech.PartOfSpeech;
+import eu.excitementproject.eop.common.representation.partofspeech.UnspecifiedPartOfSpeech;
+import eu.excitementproject.eop.common.representation.partofspeech.UnsupportedPosTagStringException;
+import eu.excitementproject.eop.core.component.lexicalknowledge.wordnet.WordnetLexicalResource;
+import eu.excitementproject.eop.core.component.lexicalknowledge.wordnet.WordnetRuleInfo;
+import eu.excitementproject.eop.core.utilities.dictionary.wordnet.WordNetRelation;
 
 /**
  * Test Wordnet.
@@ -29,12 +29,12 @@ public class TestWordNetLexicalResource {
 	/** Test Configuration **/
 	// Left Side
 	private static final String L_LEMMA = "jaguar";
-	private static final CanonicalPosTag L_CANONICAL_POS = CanonicalPosTag.NOUN;
+	private static final SimplerCanonicalPosTag L_CANONICAL_POS = SimplerCanonicalPosTag.NOUN;
 	private static final Boolean L_USE_ONLY_FIRST_SENSE = true;
 	
 	// Right Side
 	private static final String R_LEMMA = "big cat";
-	private static final CanonicalPosTag R_CANONICAL_POS = CanonicalPosTag.NOUN;
+	private static final SimplerCanonicalPosTag R_CANONICAL_POS = SimplerCanonicalPosTag.NOUN;
 	private static final Boolean R_USE_ONLY_FIRST_SENSE = true;
 	
 	// General

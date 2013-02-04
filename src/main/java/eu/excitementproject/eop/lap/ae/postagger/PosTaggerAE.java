@@ -2,6 +2,7 @@ package eu.excitementproject.eop.lap.ae.postagger;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.uima.UimaContext;
@@ -12,19 +13,19 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.uimafit.util.JCasUtil;
 
-import ac.biu.nlp.nlp.instruments.postagger.PosTaggedToken;
-import ac.biu.nlp.nlp.instruments.postagger.PosTagger;
-import ac.biu.nlp.nlp.instruments.postagger.PosTaggerException;
 import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
 import de.tudarmstadt.ukp.dkpro.core.api.resources.MappingProvider;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import eu.excitementproject.eop.lap.ae.SingletonSynchronizedAnnotator;
+import eu.excitementproject.eop.lap.biu.postagger.PosTaggedToken;
+import eu.excitementproject.eop.lap.biu.postagger.PosTagger;
+import eu.excitementproject.eop.lap.biu.postagger.PosTaggerException;
 
 
 /**
  * A UIMA Analysis Engine tags the document in the CAS for Part Of Speech tags. <BR>
- * This is only a wrapper for an existing non-UIMA <code>PosTagger</code>
+ * This is only a wrapper for an existing non-UIMA <code>eu.excitementproject.eop.lap.biu.postagger.PosTagger</code>
  * interface.
  * 
  * @author Ofer Bronstein
@@ -78,9 +79,11 @@ public abstract class PosTaggerAE<T extends PosTagger> extends SingletonSynchron
 			}
 			
 			// Process each sentence
-			for (int i=0; i<taggedTokens.size(); i++) {
-				List<PosTaggedToken> taggedTokensOnesentence = taggedTokens.get(i);
-				List<Token> tokenAnnotationsOnesentence = tokenAnnotations.get(i);
+			Iterator<List<PosTaggedToken>> iterTaggedtokens = taggedTokens.iterator();
+			Iterator<List<Token>> iterTokenAnnotations = tokenAnnotations.iterator();
+			while (iterTaggedtokens.hasNext()) {
+				List<PosTaggedToken> taggedTokensOnesentence = iterTaggedtokens.next();
+				List<Token> tokenAnnotationsOnesentence = iterTokenAnnotations.next();
 				
 				if (taggedTokensOnesentence.size() != tokenAnnotationsOnesentence.size()) {
 					throw new PosTaggerException("Got pos tagging for " + taggedTokensOnesentence.size() +
@@ -88,10 +91,12 @@ public abstract class PosTaggerAE<T extends PosTagger> extends SingletonSynchron
 				}
 								
 				// Process each token
-				for (int j=0; j<taggedTokensOnesentence.size(); j++) {
-					PosTaggedToken taggedToken = taggedTokensOnesentence.get(j);
+				Iterator<PosTaggedToken> iterTaggedtokensOnesentence = taggedTokensOnesentence.iterator();
+				Iterator<Token> iterTokenAnnotationsOnesentence = tokenAnnotationsOnesentence.iterator();
+				while (iterTaggedtokensOnesentence.hasNext()) {
+					PosTaggedToken taggedToken = iterTaggedtokensOnesentence.next();
 					String tagString = taggedToken.getPartOfSpeech().getStringRepresentation();
-					Token tokenAnnotation = tokenAnnotationsOnesentence.get(j);
+					Token tokenAnnotation = iterTokenAnnotationsOnesentence.next();
 					
 					// Get an annotation with the appropriate UIMA type via the mappingProvider
 					Type posTag = mappingProvider.getTagType(tagString);
@@ -104,13 +109,6 @@ public abstract class PosTaggerAE<T extends PosTagger> extends SingletonSynchron
 			}
 		} catch (PosTaggerException e) {
 			throw new AnalysisEngineProcessException(AnalysisEngineProcessException.ANNOTATOR_EXCEPTION, null, e);
-		}
-	}
-	
-	@Override
-	public void destroy() {
-		synchronized (innerTool) {
-			innerTool.cleanUp();
 		}
 	}
 	
